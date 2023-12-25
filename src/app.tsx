@@ -10,6 +10,8 @@ import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
+// entry 文件
+
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
@@ -26,6 +28,7 @@ export async function getInitialState(): Promise<{
       });
       return msg.data;
     } catch (error) {
+      // 未获取到用户信息 则跳转到登录页面
       history.push(loginPath);
     }
     return undefined;
@@ -101,7 +104,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     // unAccessible: <div>unAccessible</div>,
     // 增加一个 loading 的状态
     childrenRender: (children) => {
-      // if (initialState?.loading) return <PageLoading />;
       return (
         <>
           {children}

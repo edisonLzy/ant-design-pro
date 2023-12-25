@@ -19,9 +19,12 @@ import { FormattedMessage, Helmet, SelectLang, useIntl, useModel } from '@umijs/
 import { Alert, message, Tabs } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
+// q: flushSync 的作用
+// a: 用于同步更新 ?
 import { flushSync } from 'react-dom';
 import Settings from '../../../../config/defaultSettings';
 
+// 定义当前页面的样式
 const useStyles = createStyles(({ token }) => {
   return {
     action: {
@@ -74,6 +77,7 @@ const Lang = () => {
   const { styles } = useStyles();
 
   return (
+    // 使用样式
     <div className={styles.lang} data-lang>
       {SelectLang && <SelectLang />}
     </div>
@@ -125,6 +129,7 @@ const Login: React.FC = () => {
         });
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
+        // 获取 query 参数中的 redirect
         const urlParams = new URL(window.location.href).searchParams;
         window.location.href = urlParams.get('redirect') || '/';
         return;
@@ -145,15 +150,19 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      {/* 设置页面的title */}
       <Helmet>
         <title>
           {intl.formatMessage({
+            // i18n key
             id: 'menu.login',
+            // 默认值
             defaultMessage: '登录页',
           })}
           - {Settings.title}
         </title>
       </Helmet>
+      {/* 右上角语言切换按钮 */}
       <Lang />
       <div
         style={{
@@ -161,18 +170,21 @@ const Login: React.FC = () => {
           padding: '32px 0',
         }}
       >
+        {/* LoginForm 只是对 ProForm的简单封装(添加了login布局) */}
         <LoginForm
+          logo={<img alt="logo" src="/logo.svg" />}
+          title="Ant Design"
+          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           contentStyle={{
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
-          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,
           }}
+          // 组件props中使用数组,而不是 Fragment
           actions={[
+            // 类似于 Trans ?
             <FormattedMessage
               key="loginWith"
               id="pages.login.loginWith"
@@ -184,10 +196,13 @@ const Login: React.FC = () => {
             await handleSubmit(values as API.LoginParams);
           }}
         >
+          {/* 如果 tab内容包括公共的UI, 则 Tabs 只渲染 TabsUI,而不渲染 children */}
           <Tabs
+            // 标签居中展示
+            centered
             activeKey={type}
             onChange={setType}
-            centered
+            // 容纳更多标签实现逻辑 ?
             items={[
               {
                 key: 'account',
@@ -218,8 +233,10 @@ const Login: React.FC = () => {
             <>
               <ProFormText
                 name="username"
+                // 设置到控件上的属性
                 fieldProps={{
                   size: 'large',
+                  // 设置input前缀
                   prefix: <UserOutlined />,
                 }}
                 placeholder={intl.formatMessage({
@@ -252,6 +269,9 @@ const Login: React.FC = () => {
                   {
                     required: true,
                     message: (
+                      // q: 这里为什么能写 jsx ?
+                      // a: 因为 FormattedMessage 组件会把 jsx 转换成字符串
+
                       <FormattedMessage
                         id="pages.login.password.required"
                         defaultMessage="请输入密码！"
@@ -297,6 +317,7 @@ const Login: React.FC = () => {
                   },
                 ]}
               />
+              {/* 验证码 */}
               <ProFormCaptcha
                 fieldProps={{
                   size: 'large',
