@@ -80,6 +80,7 @@ const TopSearch = ({
       loading={loading}
       bordered={false}
       title="线上热门搜索"
+      // extra渲染到右上角的操作区域
       extra={dropdownGroup}
       style={{
         height: '100%',

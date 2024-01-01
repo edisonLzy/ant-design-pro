@@ -65,6 +65,7 @@ const OfflineData = ({
         onChange={handleTabChange}
         items={offlineData.map((shop) => ({
           key: shop.name,
+          // 自动 tab 的内容
           label: <CustomTab data={shop} currentTabKey={activeKey} />,
           children: (
             <div

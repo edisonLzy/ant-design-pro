@@ -1,6 +1,7 @@
 import React from 'react';
 import { yuan } from '../components/Charts';
 /** 减少使用 dangerouslySetInnerHTML */
+// tips: 这种方式相较于 dangerouslySetInnerHTML 的好处就是代码更可控
 export default class Yuan extends React.Component<{
   children: React.ReactText;
 }> {

@@ -8,6 +8,8 @@ import routes from './routes';
 
 const { REACT_APP_ENV = 'dev' } = process.env;
 
+// umi的配置文件
+
 export default defineConfig({
   /**
    * @name 开启 hash 模式

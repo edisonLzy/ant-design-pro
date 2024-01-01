@@ -17,7 +17,9 @@ export type ChartCardProps = {
 } & CardProps;
 
 const ChartCard: React.FC<ChartCardProps> = (props) => {
+
   const { styles } = useStyles();
+
   const renderTotal = (total?: number | totalType | React.ReactNode) => {
     if (!total && total !== 0) {
       return null;
@@ -35,6 +37,7 @@ const ChartCard: React.FC<ChartCardProps> = (props) => {
     }
     return totalDom;
   };
+
   const renderContent = () => {
     const { contentHeight, title, avatar, action, total, footer, children, loading } = props;
     if (loading) {
@@ -90,6 +93,7 @@ const ChartCard: React.FC<ChartCardProps> = (props) => {
     children,
     ...rest
   } = props;
+
   return (
     <Card
       loading={loading}

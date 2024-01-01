@@ -47,6 +47,12 @@ const SalesCard = ({
     >
       <div className={styles.salesCard}>
         <Tabs
+          size="large"
+          tabBarStyle={{
+            // .ant-tabs-nav的样式
+            marginBottom: 24,
+          }}
+          // .ant-tabs-extra-content
           tabBarExtraContent={
             <div className={styles.salesExtraWrap}>
               <div className={styles.salesExtra}>
@@ -72,10 +78,6 @@ const SalesCard = ({
               />
             </div>
           }
-          size="large"
-          tabBarStyle={{
-            marginBottom: 24,
-          }}
           items={[
             {
               key: 'sales',
@@ -116,10 +118,10 @@ const SalesCard = ({
                       <ul className={styles.rankingList}>
                         {rankingListData.map((item, i) => (
                           <li key={item.title}>
+                            {/* 渲染序号 */}
                             <span
-                              className={`${styles.rankingItemNumber} ${
-                                i < 3 ? styles.rankingItemNumberActive : ''
-                              }`}
+                              className={`${styles.rankingItemNumber} ${i < 3 ? styles.rankingItemNumberActive : ''
+                                }`}
                             >
                               {i + 1}
                             </span>
@@ -173,9 +175,8 @@ const SalesCard = ({
                         {rankingListData.map((item, i) => (
                           <li key={item.title}>
                             <span
-                              className={`${
-                                i < 3 ? styles.rankingItemNumberActive : styles.rankingItemNumber
-                              }`}
+                              className={`${i < 3 ? styles.rankingItemNumberActive : styles.rankingItemNumber
+                                }`}
                             >
                               {i + 1}
                             </span>
@@ -197,4 +198,5 @@ const SalesCard = ({
     </Card>
   );
 };
+
 export default SalesCard;

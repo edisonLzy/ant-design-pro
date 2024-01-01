@@ -18,12 +18,14 @@ import type { AnalysisData } from './data.d';
 import { fakeChartData } from './service';
 import useStyles from './style.style';
 import { getTimeDistance } from './utils/utils';
+
 type RangePickerValue = RangePickerProps<dayjs.Dayjs>['value'];
 type AnalysisProps = {
   dashboardAndanalysis: AnalysisData;
   loading: boolean;
 };
 type SalesType = 'all' | 'online' | 'stores';
+
 const Analysis: FC<AnalysisProps> = () => {
   const { styles } = useStyles();
   const [salesType, setSalesType] = useState<SalesType>('all');
@@ -97,6 +99,7 @@ const Analysis: FC<AnalysisProps> = () => {
   return (
     <GridContent>
       <>
+        {/* Suspense 感觉没必要啊 ？  */}
         <Suspense fallback={<PageLoading />}>
           <IntroduceRow loading={loading} visitData={data?.visitData || []} />
         </Suspense>
