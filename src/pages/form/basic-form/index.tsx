@@ -130,6 +130,7 @@ const BasicForm: FC<Record<string, any>> = () => {
             max={100}
             width="xs"
             fieldProps={{
+              // 将 传递给 inputNumber
               formatter: (value) => `${value || 0}%`,
               parser: (value) => Number(value ? value.replace('%', '') : '0'),
             }}
