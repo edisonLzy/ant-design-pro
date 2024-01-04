@@ -6,11 +6,13 @@ import {
 } from '@ant-design/icons';
 import { useRequest } from '@umijs/max';
 import { Avatar, Card, Dropdown, List, Tooltip } from 'antd';
+// numeral: A javascript library for formatting and manipulating numbers.
 import numeral from 'numeral';
 import React from 'react';
 import type { ListItemDataType } from '../../data.d';
 import { queryFakeList } from '../../service';
 import useStyles from './index.style';
+
 export function formatWan(val: number) {
   const v = val * 1;
   if (!v || Number.isNaN(v)) return '';
@@ -35,6 +37,7 @@ export function formatWan(val: number) {
   }
   return result;
 }
+
 const Applications: React.FC = () => {
   const { styles: stylesApplications } = useStyles();
   // 获取tab列表数据
@@ -61,10 +64,11 @@ const Applications: React.FC = () => {
   );
   return (
     <List<ListItemDataType>
-      rowKey="id"
       className={stylesApplications.filterCardList}
+      rowKey="id"
       grid={{
         gutter: 24,
+        // Col's span: 总列数 / 显示列数
         xxl: 3,
         xl: 2,
         lg: 2,
@@ -120,4 +124,5 @@ const Applications: React.FC = () => {
     />
   );
 };
+
 export default Applications;

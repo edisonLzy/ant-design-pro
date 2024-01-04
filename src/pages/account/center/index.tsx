@@ -62,6 +62,7 @@ const TagList: React.FC<{
   const { styles } = useStyles();
   const ref = useRef<InputRef | null>(null);
   const [newTags, setNewTags] = useState<TagType[]>([]);
+  // 控制input和tag显示的状态
   const [inputVisible, setInputVisible] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
   const showInput = () => {
@@ -110,6 +111,7 @@ const TagList: React.FC<{
         />
       )}
       {!inputVisible && (
+        // 利用一个Tab来显示添加按钮
         <Tag
           onClick={showInput}
           style={{
@@ -207,6 +209,7 @@ const Center: React.FC = () => {
             {!loading && currentUser && (
               <div>
                 <div className={styles.avatarHolder}>
+                  {/* inline/inline-block 元素直接使用text-align:center; 居中 */}
                   <img alt="" src={currentUser.avatar} />
                   <div className={styles.name}>{currentUser.name}</div>
                   <div>{currentUser?.signature}</div>
@@ -242,6 +245,7 @@ const Center: React.FC = () => {
           <Card
             className={styles.tabsCard}
             bordered={false}
+            // 带页签的卡片(tab)
             tabList={operationTabList}
             activeTabKey={tabKey}
             onTabChange={(_tabKey: string) => {
